@@ -1,31 +1,106 @@
-/* Final visual polish for all three portfolio designs. Loaded by design-switcher.js. */
+/* Focused visibility + profile-photo framing polish. Existing layout/designs preserved. */
+
+/* Keep the real 300x500 portrait intact. The frame adapts to the photo instead of cropping it. */
+.profile-photo-wrap.is-framed {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--frame-mat, var(--surface-strong));
+  border: 1px solid var(--frame-ring, var(--line));
+  box-sizing: border-box;
+}
+
+.profile-photo-wrap.is-framed img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 5;
+  object-fit: contain;
+  object-position: center center;
+  max-width: 100%;
+  max-height: none;
+  margin: 0 auto;
+  background: var(--frame-mat, var(--surface-strong));
+}
+
+/* Professional design: improve contrast without changing the existing design. */
+body[data-design="professional"] .brand-role,
+body[data-design="professional"] .profile-caption,
+body[data-design="professional"] .section-intro,
+body[data-design="professional"] .hero-lede {
+  color: var(--muted);
+}
+body[data-design="professional"] .profile-caption strong,
+body[data-design="professional"] .section h2,
+body[data-design="professional"] .card h3,
+body[data-design="professional"] .timeline-item h3 {
+  color: var(--ink);
+}
+body[data-design="professional"] .profile-panel {
+  overflow: hidden;
+}
+
+/* Premium Creative */
 body[data-design="premium"] .hero,
 body[data-design="executive"] .hero { align-items: start; }
-body[data-design="premium"] .profile-panel img,
-body[data-design="executive"] .profile-panel img { width:100%; aspect-ratio:3/5; height:auto; max-height:680px; object-fit:cover; object-position:50% 0%; }
 body[data-design="premium"] .profile-panel,
-body[data-design="executive"] .profile-panel { overflow:hidden; }
+body[data-design="executive"] .profile-panel { overflow: hidden; }
 body[data-design="premium"] .section-header,
-body[data-design="executive"] .section-header { margin-bottom:34px; }
+body[data-design="executive"] .section-header { margin-bottom: 34px; }
 body[data-design="premium"] .card,
 body[data-design="executive"] .card,
 body[data-design="premium"] .timeline-item,
-body[data-design="executive"] .timeline-item { transition:transform 180ms ease,box-shadow 180ms ease,border-color 180ms ease; }
-body[data-design="premium"] .hero-lede { max-width:680px; color:#d4dde7; }
-body[data-design="premium"] .quick-facts { gap:14px; }
-body[data-design="premium"] .fact { border-color:rgba(94,231,208,.16); }
-body[data-design="premium"] .profile-panel { position:relative; }
-body[data-design="premium"] .profile-panel::after { content:""; position:absolute; inset:8px; border:1px solid rgba(244,199,107,.12); border-radius:20px; pointer-events:none; }
-body[data-design="executive"] .hero-lede { max-width:650px; font-size:clamp(1.05rem,1.7vw,1.18rem); }
-body[data-design="executive"] .fact { border-top:3px solid var(--accent); }
-body[data-design="executive"] .profile-caption { border-top:1px solid var(--line); margin-top:12px; }
-body[data-design="executive"] .section { scroll-margin-top:88px; }
-.design-switcher { isolation:isolate; }
-.design-switcher__panel { z-index:101; }
-.design-option { min-height:60px; }
-.design-option__check { opacity:.22; }
-.design-option.is-active .design-option__check { opacity:1; }
-@media (max-width:980px) { body[data-design="premium"] .hero,body[data-design="executive"] .hero { align-items:start; } body[data-design="premium"] .profile-panel,body[data-design="executive"] .profile-panel { width:min(100%,520px); } }
-@media (max-width:720px) { body[data-design="premium"] .hero,body[data-design="executive"] .hero { padding-top:38px; } body[data-design="premium"] .profile-panel img,body[data-design="executive"] .profile-panel img { aspect-ratio:3/5; max-height:none; } body[data-design="premium"] .profile-panel,body[data-design="executive"] .profile-panel { margin-inline:auto; } }
-@media (max-width:430px) { body[data-design="premium"] .quick-facts,body[data-design="executive"] .quick-facts { grid-template-columns:1fr; } body[data-design="premium"] .fact,body[data-design="executive"] .fact { min-height:82px; } .design-switcher { left:12px; right:12px; bottom:10px; } .design-switcher__toggle { width:100%; } .design-switcher__panel { width:100%; } }
-@media (prefers-reduced-motion:reduce) { body[data-design="premium"] .card,body[data-design="executive"] .card,body[data-design="premium"] .timeline-item,body[data-design="executive"] .timeline-item { transition:none; } }
+body[data-design="executive"] .timeline-item { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+body[data-design="premium"] .hero-lede { max-width: 680px; color: #d4dde7; }
+body[data-design="premium"] .quick-facts { gap: 14px; }
+body[data-design="premium"] .fact { border-color: rgba(94,231,208,.16); }
+body[data-design="premium"] .profile-panel { position: relative; }
+body[data-design="premium"] .profile-panel::after { content: ""; position: absolute; inset: 8px; border: 1px solid rgba(244,199,107,.12); border-radius: 20px; pointer-events: none; }
+
+/* Executive / Corporate */
+body[data-design="executive"] .hero-lede { max-width: 650px; font-size: clamp(1.05rem,1.7vw,1.18rem); }
+body[data-design="executive"] .fact { border-top: 3px solid var(--accent); }
+body[data-design="executive"] .profile-caption { border-top: 1px solid var(--line); margin-top: 12px; }
+body[data-design="executive"] .section { scroll-margin-top: 88px; }
+
+/* Design selector */
+.design-switcher { isolation: isolate; }
+.design-switcher__panel { z-index: 101; }
+.design-option { min-height: 60px; }
+.design-option__check { opacity: .22; }
+.design-option.is-active .design-option__check { opacity: 1; }
+
+@media (max-width: 980px) {
+  body[data-design="premium"] .hero,
+  body[data-design="executive"] .hero { align-items: start; }
+  body[data-design="premium"] .profile-panel,
+  body[data-design="executive"] .profile-panel { width: min(100%, 520px); }
+  .profile-photo-wrap.is-framed { width: 100%; }
+}
+
+@media (max-width: 720px) {
+  body[data-design="premium"] .hero,
+  body[data-design="executive"] .hero { padding-top: 38px; }
+  body[data-design="premium"] .profile-panel,
+  body[data-design="executive"] .profile-panel { margin-inline: auto; }
+  .profile-photo-wrap.is-framed img { aspect-ratio: 3 / 5; object-fit: contain; }
+}
+
+@media (max-width: 430px) {
+  body[data-design="premium"] .quick-facts,
+  body[data-design="executive"] .quick-facts { grid-template-columns: 1fr; }
+  body[data-design="premium"] .fact,
+  body[data-design="executive"] .fact { min-height: 82px; }
+  .design-switcher { left: 12px; right: 12px; bottom: 10px; }
+  .design-switcher__toggle { width: 100%; }
+  .design-switcher__panel { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-design="premium"] .card,
+  body[data-design="executive"] .card,
+  body[data-design="premium"] .timeline-item,
+  body[data-design="executive"] .timeline-item { transition: none; }
+}
