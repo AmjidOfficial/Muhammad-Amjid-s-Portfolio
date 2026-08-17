@@ -1,14 +1,17 @@
 /* Focused visibility + profile-photo framing polish. Existing layout/designs preserved. */
 
-/* Keep the real 300x500 portrait intact. The frame adapts to the photo instead of cropping it. */
+/* The source portrait is 300x500 (3:5). Keep the complete headshot inside a smaller, centered frame. */
 .profile-photo-wrap.is-framed {
-  width: 100%;
+  width: min(100%, 300px);
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 7px;
   background: var(--frame-mat, var(--surface-strong));
   border: 1px solid var(--frame-ring, var(--line));
+  border-radius: var(--radius);
   box-sizing: border-box;
 }
 
@@ -23,24 +26,20 @@
   max-height: none;
   margin: 0 auto;
   background: var(--frame-mat, var(--surface-strong));
+  border-radius: 4px;
 }
+
+.profile-panel { overflow: hidden; }
 
 /* Professional design: improve contrast without changing the existing design. */
 body[data-design="professional"] .brand-role,
 body[data-design="professional"] .profile-caption,
 body[data-design="professional"] .section-intro,
-body[data-design="professional"] .hero-lede {
-  color: var(--muted);
-}
+body[data-design="professional"] .hero-lede { color: var(--muted); }
 body[data-design="professional"] .profile-caption strong,
 body[data-design="professional"] .section h2,
 body[data-design="professional"] .card h3,
-body[data-design="professional"] .timeline-item h3 {
-  color: var(--ink);
-}
-body[data-design="professional"] .profile-panel {
-  overflow: hidden;
-}
+body[data-design="professional"] .timeline-item h3 { color: var(--ink); }
 
 /* Premium Creative */
 body[data-design="premium"] .hero,
@@ -76,8 +75,8 @@ body[data-design="executive"] .section { scroll-margin-top: 88px; }
   body[data-design="premium"] .hero,
   body[data-design="executive"] .hero { align-items: start; }
   body[data-design="premium"] .profile-panel,
-  body[data-design="executive"] .profile-panel { width: min(100%, 520px); }
-  .profile-photo-wrap.is-framed { width: 100%; }
+  body[data-design="executive"] .profile-panel { width: min(100%, 390px); margin-inline: auto; }
+  .profile-photo-wrap.is-framed { width: min(100%, 300px); }
 }
 
 @media (max-width: 720px) {
@@ -85,10 +84,12 @@ body[data-design="executive"] .section { scroll-margin-top: 88px; }
   body[data-design="executive"] .hero { padding-top: 38px; }
   body[data-design="premium"] .profile-panel,
   body[data-design="executive"] .profile-panel { margin-inline: auto; }
+  .profile-photo-wrap.is-framed { width: min(100%, 270px); padding: 6px; }
   .profile-photo-wrap.is-framed img { aspect-ratio: 3 / 5; object-fit: contain; }
 }
 
 @media (max-width: 430px) {
+  .profile-photo-wrap.is-framed { width: min(100%, 250px); }
   body[data-design="premium"] .quick-facts,
   body[data-design="executive"] .quick-facts { grid-template-columns: 1fr; }
   body[data-design="premium"] .fact,
