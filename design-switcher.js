@@ -10,7 +10,7 @@
 
   const polishLink = document.createElement('link');
   polishLink.rel = 'stylesheet';
-  polishLink.href = 'designs-polish.css?v=profile-fix-2';
+  polishLink.href = 'designs-polish.css?v=profile-fix-3';
   document.head.appendChild(polishLink);
 
   function refreshProfessionalWording() {
@@ -44,12 +44,26 @@
 
   function fixSmartSalesLink() {
     const smartSalesUrl = 'http://108.181.168.213:1021/';
+    document.querySelectorAll('.project-card, .projects-table').forEach((scope) => {
+      scope.querySelectorAll('h3, td').forEach((element) => {
+        const text = (element.textContent || '').trim().toLowerCase();
+        if (text === 'salespulse') {
+          const link = document.createElement('a');
+          link.href = smartSalesUrl;
+          link.textContent = 'Smart Sales';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.title = 'Open Smart Sales';
+          element.textContent = '';
+          element.appendChild(link);
+        }
+      });
+    });
+
     document.querySelectorAll('a[href]').forEach((anchor) => {
       const href = (anchor.getAttribute('href') || '').toLowerCase();
       const text = (anchor.textContent || '').trim().toLowerCase();
-      const isSalesPulse = href.includes('salespulse') || text.includes('salespulse');
-      const isSmartSalesProject = text.includes('smart sales');
-      if (isSalesPulse || isSmartSalesProject) {
+      if (href.includes('salespulse') || text === 'salespulse') {
         anchor.href = smartSalesUrl;
         anchor.textContent = 'Smart Sales';
         anchor.target = '_blank';
@@ -64,39 +78,41 @@
     style.id = 'amjid-profile-frame-final-fix';
     style.textContent = `
       .profile-photo-wrap.is-framed {
-        width: min(100%, 270px) !important;
-        max-width: 270px !important;
+        width: min(100%, 240px) !important;
+        max-width: 240px !important;
+        aspect-ratio: 3 / 5 !important;
+        height: auto !important;
         margin-inline: auto !important;
-        padding: 6px !important;
+        padding: 5px !important;
         overflow: hidden !important;
         display: flex !important;
-        align-items: center !important;
+        align-items: flex-start !important;
         justify-content: center !important;
         box-sizing: border-box !important;
       }
       .profile-photo-wrap.is-framed img {
         display: block !important;
         width: 100% !important;
-        height: auto !important;
+        height: 100% !important;
         max-width: 100% !important;
-        max-height: none !important;
+        max-height: 100% !important;
         aspect-ratio: 3 / 5 !important;
         object-fit: contain !important;
-        object-position: center center !important;
+        object-position: center top !important;
         margin: 0 auto !important;
         border-radius: 4px !important;
       }
       @media (max-width: 720px) {
         .profile-photo-wrap.is-framed {
-          width: min(100%, 235px) !important;
-          max-width: 235px !important;
+          width: min(100%, 220px) !important;
+          max-width: 220px !important;
           padding: 5px !important;
         }
       }
       @media (max-width: 430px) {
         .profile-photo-wrap.is-framed {
-          width: min(100%, 215px) !important;
-          max-width: 215px !important;
+          width: min(100%, 200px) !important;
+          max-width: 200px !important;
         }
       }
     `;
