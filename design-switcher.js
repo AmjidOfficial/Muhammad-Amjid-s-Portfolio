@@ -2,7 +2,7 @@
   const designs = [
     { id: 'professional', label: '01 Professional', desc: 'Current portfolio design' },
     { id: 'premium', label: '02 Premium Creative', desc: 'Luxury, depth and motion' },
-    { id: 'executive', label: '03 Executive / Corporate', desc: 'Senior leadership presentation' }
+    { id: 'executive', label: '03 Executive / Corporate', desc: 'Senior business presentation' }
   ];
   const storageKey = 'amjid-portfolio-design';
   const body = document.body;
@@ -12,6 +12,35 @@
   polishLink.rel = 'stylesheet';
   polishLink.href = 'designs-polish.css';
   document.head.appendChild(polishLink);
+
+  function refreshProfessionalWording() {
+    const replacements = new Map([
+      ['Sales Leader | Web Learner', 'Sales Professional | Web Learner'],
+      ['FMCG sales leadership profile', 'FMCG sales professional profile'],
+      ['FMCG sales manager with 15+ years of experience', 'FMCG sales professional with 15+ years of experience'],
+      ['field force leadership', 'sales team management'],
+      ['Business leadership with a technology mindset.', 'Sales expertise with a technology mindset.'],
+      ['team leadership, and analytics', 'team management, and analytics'],
+      ['Sales leadership across North.', 'Sales experience across North.'],
+      ['regional leadership,', 'regional sales experience,'],
+      ['FMCG Sales Leadership', 'FMCG Sales Expertise']
+    ]);
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      let value = node.nodeValue;
+      replacements.forEach((replacement, source) => {
+        value = value.split(source).join(replacement);
+      });
+      node.nodeValue = value;
+    });
+
+    document.querySelectorAll('meta[name="description"]').forEach((meta) => {
+      meta.setAttribute('content', 'Muhammad Amjid portfolio, FMCG sales professional profile, digital transformation projects, learning journey, and contact information.');
+    });
+  }
 
   function getSaved() {
     const saved = localStorage.getItem(storageKey);
@@ -99,5 +128,6 @@
     }
   }, true);
 
+  refreshProfessionalWording();
   applyDesign(getSaved());
 })();
