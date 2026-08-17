@@ -1,32 +1,34 @@
 /* Focused visibility + profile-photo framing polish. Existing layout/designs preserved. */
 
-/* The source portrait is 300x500 (3:5). Keep the complete headshot inside a smaller, centered frame. */
+/* Source portrait: 300x500 (3:5). Keep a compact portrait frame and keep the head inside it. */
 .profile-photo-wrap.is-framed {
-  width: min(100%, 300px);
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 7px;
-  background: var(--frame-mat, var(--surface-strong));
-  border: 1px solid var(--frame-ring, var(--line));
-  border-radius: var(--radius);
-  box-sizing: border-box;
+  width: min(100%, 240px) !important;
+  height: auto !important;
+  aspect-ratio: 3 / 5 !important;
+  margin-inline: auto !important;
+  padding: 5px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  background: var(--frame-mat, var(--surface-strong)) !important;
+  border: 1px solid var(--frame-ring, var(--line)) !important;
+  border-radius: var(--radius) !important;
 }
 
 .profile-photo-wrap.is-framed img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 5;
-  object-fit: contain;
-  object-position: center center;
-  max-width: 100%;
-  max-height: none;
-  margin: 0 auto;
-  background: var(--frame-mat, var(--surface-strong));
-  border-radius: 4px;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 3 / 5 !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 auto !important;
+  background: var(--frame-mat, var(--surface-strong)) !important;
+  border-radius: 4px !important;
 }
 
 .profile-panel { overflow: hidden; }
@@ -40,6 +42,12 @@ body[data-design="professional"] .profile-caption strong,
 body[data-design="professional"] .section h2,
 body[data-design="professional"] .card h3,
 body[data-design="professional"] .timeline-item h3 { color: var(--ink); }
+
+/* Project links */
+.project-card .project-topline h3 a,
+.projects-table a { color: inherit; text-decoration: none; }
+.project-card .project-topline h3 a:hover,
+.projects-table a:hover { text-decoration: underline; }
 
 /* Premium Creative */
 body[data-design="premium"] .hero,
@@ -75,8 +83,8 @@ body[data-design="executive"] .section { scroll-margin-top: 88px; }
   body[data-design="premium"] .hero,
   body[data-design="executive"] .hero { align-items: start; }
   body[data-design="premium"] .profile-panel,
-  body[data-design="executive"] .profile-panel { width: min(100%, 390px); margin-inline: auto; }
-  .profile-photo-wrap.is-framed { width: min(100%, 300px); }
+  body[data-design="executive"] .profile-panel { width: min(100%, 350px); margin-inline: auto; }
+  .profile-photo-wrap.is-framed { width: min(100%, 240px) !important; }
 }
 
 @media (max-width: 720px) {
@@ -84,12 +92,11 @@ body[data-design="executive"] .section { scroll-margin-top: 88px; }
   body[data-design="executive"] .hero { padding-top: 38px; }
   body[data-design="premium"] .profile-panel,
   body[data-design="executive"] .profile-panel { margin-inline: auto; }
-  .profile-photo-wrap.is-framed { width: min(100%, 270px); padding: 6px; }
-  .profile-photo-wrap.is-framed img { aspect-ratio: 3 / 5; object-fit: contain; }
+  .profile-photo-wrap.is-framed { width: min(100%, 220px) !important; padding: 5px !important; }
 }
 
 @media (max-width: 430px) {
-  .profile-photo-wrap.is-framed { width: min(100%, 250px); }
+  .profile-photo-wrap.is-framed { width: min(100%, 200px) !important; }
   body[data-design="premium"] .quick-facts,
   body[data-design="executive"] .quick-facts { grid-template-columns: 1fr; }
   body[data-design="premium"] .fact,
