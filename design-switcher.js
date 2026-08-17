@@ -8,6 +8,11 @@
   const body = document.body;
   const existingToggle = document.getElementById('themeToggle');
 
+  const polishLink = document.createElement('link');
+  polishLink.rel = 'stylesheet';
+  polishLink.href = 'designs-polish.css';
+  document.head.appendChild(polishLink);
+
   function getSaved() {
     const saved = localStorage.getItem(storageKey);
     return designs.some((item) => item.id === saved) ? saved : 'professional';
