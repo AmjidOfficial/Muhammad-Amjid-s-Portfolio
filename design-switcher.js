@@ -10,7 +10,7 @@
 
   const polishLink = document.createElement('link');
   polishLink.rel = 'stylesheet';
-  polishLink.href = 'designs-polish.css';
+  polishLink.href = 'designs-polish.css?v=profile-fix-2';
   document.head.appendChild(polishLink);
 
   function refreshProfessionalWording() {
@@ -40,6 +40,67 @@
     document.querySelectorAll('meta[name="description"]').forEach((meta) => {
       meta.setAttribute('content', 'Muhammad Amjid portfolio, FMCG sales professional profile, digital transformation projects, learning journey, and contact information.');
     });
+  }
+
+  function fixSmartSalesLink() {
+    const smartSalesUrl = 'http://108.181.168.213:1021/';
+    document.querySelectorAll('a[href]').forEach((anchor) => {
+      const href = (anchor.getAttribute('href') || '').toLowerCase();
+      const text = (anchor.textContent || '').trim().toLowerCase();
+      const isSalesPulse = href.includes('salespulse') || text.includes('salespulse');
+      const isSmartSalesProject = text.includes('smart sales');
+      if (isSalesPulse || isSmartSalesProject) {
+        anchor.href = smartSalesUrl;
+        anchor.textContent = 'Smart Sales';
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        anchor.title = 'Open Smart Sales';
+      }
+    });
+  }
+
+  function fixProfilePhotoFrame() {
+    const style = document.createElement('style');
+    style.id = 'amjid-profile-frame-final-fix';
+    style.textContent = `
+      .profile-photo-wrap.is-framed {
+        width: min(100%, 270px) !important;
+        max-width: 270px !important;
+        margin-inline: auto !important;
+        padding: 6px !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+      .profile-photo-wrap.is-framed img {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        aspect-ratio: 3 / 5 !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        margin: 0 auto !important;
+        border-radius: 4px !important;
+      }
+      @media (max-width: 720px) {
+        .profile-photo-wrap.is-framed {
+          width: min(100%, 235px) !important;
+          max-width: 235px !important;
+          padding: 5px !important;
+        }
+      }
+      @media (max-width: 430px) {
+        .profile-photo-wrap.is-framed {
+          width: min(100%, 215px) !important;
+          max-width: 215px !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   function getSaved() {
@@ -129,5 +190,7 @@
   }, true);
 
   refreshProfessionalWording();
+  fixSmartSalesLink();
+  fixProfilePhotoFrame();
   applyDesign(getSaved());
 })();
