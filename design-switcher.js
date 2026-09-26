@@ -1,10 +1,12 @@
 (function () {
   const designs = [
-    { id: 'professional', label: '01 Professional', desc: 'Current portfolio design' },
-    { id: 'premium', label: '02 Premium Creative', desc: 'Luxury, depth and motion' },
-    { id: 'executive', label: '03 Executive / Corporate', desc: 'Senior business presentation' }
+    { id: 'gravity', label: '01 Gravity', desc: 'Dark gravity portfolio' },
+    { id: 'editorial', label: '02 Editorial', desc: 'Clean editorial profile' },
+    { id: 'cinematic', label: '03 Cinematic', desc: 'Deep cinematic profile' }
   ];
   const storageKey = 'amjid-portfolio-design';
+  const themeKey = 'portfolioTheme';
+  const themes = ['dark','light','neumorphic'];
   const body = document.body;
   const existingToggle = document.getElementById('themeToggle');
 
@@ -73,61 +75,15 @@
     });
   }
 
-  function fixProfilePhotoFrame() {
-    const style = document.createElement('style');
-    style.id = 'amjid-profile-frame-final-fix';
-    style.textContent = `
-      .profile-photo-wrap.is-framed {
-        width: min(100%, 240px) !important;
-        max-width: 240px !important;
-        aspect-ratio: 3 / 5 !important;
-        height: auto !important;
-        margin-inline: auto !important;
-        padding: 5px !important;
-        overflow: hidden !important;
-        display: flex !important;
-        align-items: flex-start !important;
-        justify-content: center !important;
-        box-sizing: border-box !important;
-      }
-      .profile-photo-wrap.is-framed img {
-        display: block !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        aspect-ratio: 3 / 5 !important;
-        object-fit: contain !important;
-        object-position: center top !important;
-        margin: 0 auto !important;
-        border-radius: 4px !important;
-      }
-      @media (max-width: 720px) {
-        .profile-photo-wrap.is-framed {
-          width: min(100%, 220px) !important;
-          max-width: 220px !important;
-          padding: 5px !important;
-        }
-      }
-      @media (max-width: 430px) {
-        .profile-photo-wrap.is-framed {
-          width: min(100%, 200px) !important;
-          max-width: 200px !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   function getSaved() {
     const saved = localStorage.getItem(storageKey);
-    return designs.some((item) => item.id === saved) ? saved : 'professional';
+    return designs.some((item) => item.id === saved) ? saved : 'gravity';
   }
 
   function applyDesign(id) {
     if (!designs.some((item) => item.id === id)) id = 'professional';
     body.dataset.design = id;
-    body.dataset.theme = id === 'executive' ? 'light' : 'dark';
+    body.dataset.theme = localStorage.getItem(themeKey) || 'dark';
     localStorage.setItem(storageKey, id);
     updateUI();
   }
@@ -207,6 +163,12 @@
 
   refreshProfessionalWording();
   fixSmartSalesLink();
-  fixProfilePhotoFrame();
   applyDesign(getSaved());
+  const visited = localStorage.getItem('amjid-theme-visited') === '1';
+  const currentTheme = localStorage.getItem(themeKey) || 'dark';
+  const nextTheme = themes[(themes.indexOf(currentTheme) + 1 + themes.length) % themes.length];
+  const openingTheme = visited ? nextTheme : 'dark';
+  body.dataset.theme = openingTheme;
+  localStorage.setItem(themeKey, openingTheme);
+  localStorage.setItem('amjid-theme-visited', '1');
 })();
