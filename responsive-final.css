@@ -63,3 +63,11 @@ body[data-theme="neumorphic"] .card,body[data-theme="neumorphic"] .project-card{
 body[data-theme="dark"] .muted,body[data-theme="dark"] small{color:#a8b1bc}
 body[data-theme="light"] .muted,body[data-theme="light"] small{color:#5e6970}
 body[data-theme="neumorphic"] .muted,body[data-theme="neumorphic"] small{color:#617078}
+
+/* Gravity design identity */
+body[data-design="gravity"]{--brand:#58e6d0;--accent:#f1c66b;--ink:#f5f7fa;--muted:#a8b1bc;--line:rgba(255,255,255,.14);background:#070a0f;color:#f5f7fa}
+body[data-design="gravity"] .site-header{background:rgba(7,10,15,.9);border-color:rgba(255,255,255,.12)}
+body[data-design="gravity"] .card,body[data-design="gravity"] .fact,body[data-design="gravity"] .timeline-item,body[data-design="gravity"] .profile-panel{background:#0f141c;color:#f5f7fa;border-color:rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+body[data-design="gravity"] .profile-photo{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
+body[data-design="gravity"] .button{background:#58e6d0;color:#07100e;border-color:#58e6d0}
+body[data-design="gravity"] .button.secondary{background:transparent;color:#f5f7fa;border-color:rgba(255,255,255,.2)}
