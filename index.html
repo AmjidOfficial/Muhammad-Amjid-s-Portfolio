@@ -13,7 +13,7 @@
   <script src="design-switcher.js" defer></script>
   <!-- AMJID-DESIGN-SWITCHER -->
 </head>
-  <body data-theme="dark">
+  <body data-theme="neumorphic">
     <div class="scroll-progress" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -30,6 +30,7 @@
           <a href="#about">About</a>
           <a href="#education">Education</a>
           <a href="#experience">Experience</a>
+          <a href="#achievements">Achievements</a>
           <a href="#skills">Skills</a>
           <a href="#journey">Journey</a>
           <a href="#projects">Projects</a>
@@ -303,6 +304,118 @@
                 and acting Area Sales Manager responsibilities.
               </li>
             </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="achievements">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Career Milestones</p>
+            <h2>National recognition and a record of performance.</h2>
+          </div>
+          <p class="section-intro">
+            A timeline of sales awards, leadership milestones, and company
+            recognition across my career. Dates and award titles are retained
+            from my supplied records.
+          </p>
+        </div>
+
+        <div class="achievement-grid">
+          <article class="achievement-card achievement-featured">
+            <span class="achievement-year">2023–24</span>
+            <h3>Best Regional Sales Manager</h3>
+            <p>National-level recognition, Aziz Group of Industries.</p>
+          </article>
+          <article class="achievement-card achievement-featured">
+            <span class="achievement-year">2023</span>
+            <h3>Highest Detergent Category Share</h3>
+            <p>25% company-wide share, ranked #1 among 6 Regional Sales Managers.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2020 · Q1</span>
+            <h3>National Champion ZSM</h3>
+            <p>Outstanding Performance · July 2020 to September 2020.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2019 · Q4</span>
+            <h3>National Champion ZSM</h3>
+            <p>Outstanding Performance · October 2019 to December 2019.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2018–19 · Q2</span>
+            <h3>Umrah Package with Family</h3>
+            <p>Winner of the national competition.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">Feb 2018</span>
+            <h3>Part of the Billion Team</h3>
+            <p>One Billion Sales achieved in one month.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2018 · Jan–Mar</span>
+            <h3>North Champion ASM</h3>
+            <p>Outstanding Performance.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2017 · Jul–Sep</span>
+            <h3>North Champion ASM</h3>
+            <p>Regional champion recognition.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">Oct 2016</span>
+            <h3>North Champion ASM (Acting)</h3>
+            <p>Recognition while serving in an acting role.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2016 · Apr–Jun</span>
+            <h3>North Champion TSM</h3>
+            <p>Outstanding Performance.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2015–16</span>
+            <h3>Bisconni Champion TSM</h3>
+            <p>Record-breaking sales and outstanding performance.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">Sep 2014</span>
+            <h3>Outstanding Performance · SO</h3>
+            <p>Recognition entry 1 of 2, as supplied.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">Sep 2014</span>
+            <h3>Outstanding Performance · SO</h3>
+            <p>Recognition entry 2 of 2, as supplied.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">Mar 2014</span>
+            <h3>Launching of S&amp;D Software</h3>
+            <p>Sales and distribution software launch milestone.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2012 · Q1 &amp; Q2</span>
+            <h3>Outstanding Performance · SR</h3>
+            <p>Recognition for Quarter 1 and Quarter 2.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2011 · Jan–Mar</span>
+            <h3>Outstanding Performance · SR</h3>
+            <p>Quarterly performance recognition.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2023</span>
+            <h3>SMART Sales App &amp; Web Portal</h3>
+            <p>Project lead for the head-office digital transformation initiative.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2026</span>
+            <h3>SalesPulse AI Analytics System</h3>
+            <p>Created with Gemini AI Studio for sales performance tracking.</p>
+          </article>
+          <article class="achievement-card">
+            <span class="achievement-year">2019–20</span>
+            <h3>National Champion ZSM Award</h3>
+            <p>Additional national recognition listed in the April 2026 resume.</p>
           </article>
         </div>
       </section>
@@ -753,13 +866,14 @@
       });
 
       themeToggle.addEventListener("click", () => {
-        const nextTheme = body.dataset.theme === "dark" ? "light" : "dark";
+        const themeCycle = ["neumorphic", "dark", "light"];
+        const nextTheme = themeCycle[(themeCycle.indexOf(body.dataset.theme) + 1) % themeCycle.length];
         body.dataset.theme = nextTheme;
         localStorage.setItem("portfolioTheme", nextTheme);
       });
 
       const savedTheme = localStorage.getItem("portfolioTheme");
-      body.dataset.theme = savedTheme || "dark";
+      body.dataset.theme = savedTheme || "neumorphic";
 
       const updateScrollUi = () => {
         const scrollHeight =
