@@ -83,7 +83,7 @@
   function applyDesign(id) {
     if (!designs.some((item) => item.id === id)) id = 'professional';
     body.dataset.design = id;
-    body.dataset.theme = localStorage.getItem(themeKey) || 'dark';
+    body.dataset.theme = localStorage.getItem(themeKey) || 'neumorphic';
     localStorage.setItem(storageKey, id);
     updateUI();
   }
@@ -129,8 +129,7 @@
     const currentDesign = designs.find((item) => item.id === current) || designs[0];
     toggle.querySelector('span').textContent = currentDesign.label;
     if (existingToggle) {
-      existingToggle.hidden = true;
-      existingToggle.setAttribute('aria-hidden', 'true');
+
     }
     root.querySelectorAll('.design-option').forEach((button) => {
       const active = button.dataset.designChoice === current;
@@ -152,23 +151,10 @@
     }
   });
 
-  document.addEventListener('click', (event) => {
-    if (existingToggle && event.target.closest('#themeToggle')) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      panel.hidden = !panel.hidden;
-      toggle.setAttribute('aria-expanded', String(!panel.hidden));
-    }
-  }, true);
-
   refreshProfessionalWording();
   fixSmartSalesLink();
   applyDesign(getSaved());
-  const visited = localStorage.getItem('amjid-theme-visited') === '1';
-  const currentTheme = localStorage.getItem(themeKey) || 'dark';
-  const nextTheme = themes[(themes.indexOf(currentTheme) + 1 + themes.length) % themes.length];
-  const openingTheme = visited ? nextTheme : 'dark';
+  const openingTheme = localStorage.getItem(themeKey) || 'neumorphic';
   body.dataset.theme = openingTheme;
   localStorage.setItem(themeKey, openingTheme);
-  localStorage.setItem('amjid-theme-visited', '1');
 })();
